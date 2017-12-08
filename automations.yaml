@@ -1,0 +1,24 @@
+  - id: check_temperature_low
+    alias: 'Check temperature sensor threshold (5ºC) and notify of underrun'
+    hide_entity: true
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.dht_sensor_temperature
+      below: 5
+    action:
+      service: persistent_notification.create
+      data:
+        message: 'Temperatuur onder 5°C!'
+
+  - id: check_temperature_low_recovered
+    alias: 'Check temperature sensor threshold (5ºC) and notify of recovery'
+    hide_entity: true
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.dht_sensor_temperature
+      above: 5
+    action:
+      service: persistent_notification.create
+      data:
+        message: 'Temperatuur weer boven 5°C'
+
