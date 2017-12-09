@@ -1,2 +1,11 @@
 sensor.yr_symbol:
   friendly_name: Lokaal weer
+
+sensor.berends_ipad_battery_level:
+  hidden: true
+sensor.berends_ipad_battery_state:
+  hidden: true
+sensor.berends_iphone_battery_level:
+  hidden: true
+sensor.berends_iphone_battery_state:
+  hidden: true

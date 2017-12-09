@@ -1,12 +1,21 @@
-  - id: check_temperature_low
-    alias: 'Check temperature sensor threshold (5ºC) and notify of underrun'
-    hide_entity: true
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.dht_sensor_temperature
-      below: 5
-    action:
-      service: persistent_notification.create
+- id: check_temperature_low
+  alias: Check temperature sensor threshold (5ºC) and notify of underrun
+  hide_entity: true
+  trigger:
+  - below: '5'
+    entity_id: sensor.dht_sensor_temperature
+    platform: numeric_state
+  - entity_id: sensor.dht_sensor_temperature
+    from: '22'
+    platform: state
+  action:
+  - data:
       data:
-        message: 'Temperatuur onder 5°C!'
-
+        push:
+          badge: 5
+          category: alarm
+      message: Temperatuur onder 5°C!
+    service: notify.ios_berends_iphone
+  - data:
+      message: Temperatuur onder 5°C!
+    service: persistent_notification.create
